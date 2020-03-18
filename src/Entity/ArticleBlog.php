@@ -31,6 +31,13 @@ class ArticleBlog
      */
     private $UpdatedAt;
 
+
+    public function __construct() 
+    {
+        $dateNow = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->setUpdatedAt($dateNow);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

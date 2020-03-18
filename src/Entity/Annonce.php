@@ -31,6 +31,18 @@ class Annonce
      */
     private $Quantity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Departement", inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Location;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +80,30 @@ class Annonce
     public function setQuantity(?float $Quantity): self
     {
         $this->Quantity = $Quantity;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Departement
+    {
+        return $this->Location;
+    }
+
+    public function setLocation(?Departement $Location): self
+    {
+        $this->Location = $Location;
+
+        return $this;
+    }
+
+    public function getType(): ?Category
+    {
+        return $this->Type;
+    }
+
+    public function setType(?Category $Type): self
+    {
+        $this->Type = $Type;
 
         return $this;
     }
