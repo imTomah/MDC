@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anti Gaspillage{% endblock %}
+
+{% block body %}
+    <h1>Les Astuces Anti Gaspillage</h1>
+
+    <div class="row row-cols-5 justify-content-center">
+    {% for article_blog in article_blogs %}
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        {% if article_blog.filename %}
+            <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+                <img src="{{ vich_uploader_asset(article_blog, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+            </a>       
+        {% endif %}
+        <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+            <div class="card-body">
+            <h4 class="card-title" style="color:white;">{{ article_blog.Title }}</h4>
+            {# <p class="card-text">{{ article_blog.Content }}</p> #}
+            </div>
+        </a>
+        <div class="card-header">{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('Y-m-d') : '' }}</div>
+    </div>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+</div>
+    {# <a href="{{ path('article_blog_new') }}">Create new</a> #}
+{% endblock %}

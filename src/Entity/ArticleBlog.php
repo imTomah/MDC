@@ -3,9 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleBlogRepository")
+ * @Vich\Uploadable
  */
 class ArticleBlog
 {
@@ -15,6 +20,26 @@ class ArticleBlog
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    // Import de l'image 
+
+    /**
+     * 
+     * @var File|null
+     * @Assert\Image(
+     *      mineTypes="image/jpeg"
+     * )
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string|null
+     */
+    private $filename;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -78,4 +103,47 @@ class ArticleBlog
 
         return $this;
     }
+
+    // Getter - Setter Image upload
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     * @return ArticleBlog
+     */
+    public function setFilename(?string $filename): ArticleBlog
+    {
+        $this->filename = $filename;
+        if ($this->filename instanceof UploadedFile){
+            $this->UpdatedAt= new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile() : ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return ArticleBlog
+     */
+    public function setImageFile(?File $imageFile): ArticleBlog
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+    
+
 }
