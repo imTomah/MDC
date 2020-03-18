@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\Image;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -27,7 +29,7 @@ class ArticleBlog
      * 
      * @var File|null
      * @Assert\Image(
-     *      mineTypes="image/jpeg"
+     *      mimeTypes="image/jpeg"
      * )
      * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
      */
