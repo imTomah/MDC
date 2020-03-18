@@ -1,0 +1,19 @@
+/* Header */
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/warren-wong-J33qmCVr02A-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.content-header{
+    margin-top: 70px;
+    font-family: CantataOne;
+    color: white;
+    font-size: 3.5rem;
+    position: fixed;
+}
