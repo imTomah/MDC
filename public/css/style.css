@@ -1,3 +1,8 @@
+/* Règles Générales  */
+*{
+    padding: 0;
+    margin: 0;
+}
 /* Header */
 .header{
     display: flex;
@@ -16,4 +21,78 @@
     color: white;
     font-size: 3.5rem;
     position: fixed;
+}
+
+
+/* BLOG ANTI GASPI */
+
+#header-blog{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+}  
+#img-header{
+    width: 50vw;
+    height: 100%;
+    background: rgb(112, 50, 50);
+    background-image: url('../images/markus-spiske-i5tesTFPBjw-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.txt-header-blog{
+    width: 50vw;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-blog{
+    height: 30vh;
+    width: 70vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.section-blog h2{
+    margin-bottom: 20px;
+}
+
+.card{
+    margin: 0 20px 0 0;
+}
+
+.card img {
+    border-radius: 6px 6px 0 0;
+}
+
+.card-header{
+    position: absolute bottom;
+}
+
+.footer{
+    height: 40vh;
+    width: 100vw;
+}
+/* blog.show */
+.header-content{
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.header-content h1{
+    margin: 30px 0;
+}
+.info-content{
+    margin-top: 30px;
+}
+.info-content p{
+    margin: 0 0 0 15px;
 }

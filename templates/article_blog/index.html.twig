@@ -3,15 +3,29 @@
 {% block title %}Anti Gaspillage{% endblock %}
 
 {% block body %}
-    <h1>Les Astuces Anti Gaspillage</h1>
 
+    <div id="header-blog">
+        <div id="img-header"></div>
+        <div class="txt-header-blog">
+            <h1>Les Astuces Anti Gaspillage</h1>
+        </div>
+    </div>
+    <div class="section-blog">  
+        <h2>Bienvenue sur le blog</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, .
+</p>
+    </div>
     <div class="row row-cols-5 justify-content-center">
     {% for article_blog in article_blogs %}
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
         {% if article_blog.filename %}
             <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
                 <img src="{{ vich_uploader_asset(article_blog, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
-            </a>       
+            </a>    
+            {% else %} 
+            <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+                <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+            </a>   
         {% endif %}
         <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
             <div class="card-body">
@@ -27,5 +41,6 @@
             </tr>
         {% endfor %}
 </div>
+<div class="footer"></div>
     {# <a href="{{ path('article_blog_new') }}">Create new</a> #}
 {% endblock %}

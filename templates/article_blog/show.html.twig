@@ -3,8 +3,23 @@
 {% block title %}Anti Gaspillage{% endblock %}
 
 {% block body %}
-    <h1>Les Astuces Anti Gaspillage</h1>
+    <div class="info-content">
+        <a href="{{ path('article_blog_index') }}" class="btn btn-link">Revenir au article</a>
+        <p> <small>Publiée le : {{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('d/m/Y') : '' }}</small></p>
+    </div>
 
+    <div class="header-content">
+        <h1>{{ article_blog.Title }}</h1>
+     {% if article_blog.filename %}
+                <img src="{{ vich_uploader_asset(article_blog, 'imageFile') | imagine_filter('slide') }}" alt="card-img-top" style="width:100%; height:auto;">
+            {% else %} 
+                <img src="{{ '/images/empty.jpg' | imagine_filter('slide') }}" alt="card-img-top" style="width:100%; height:auto;">
+        {% endif %}
+    
+    </div>
+    <div class="article-content">
+    <p>{{ article_blog.Content }}</p>
+    </div>
     <table class="table">
         <tbody>
             <tr>
@@ -25,10 +40,6 @@
             </tr>
         </tbody>
     </table>
-    <img src="{{ asset('images/{{ article_blog. }}') }}" alt="">
-
-    <a href="{{ path('article_blog_index') }}">back to list</a>
-
     <a href="{{ path('article_blog_edit', {'id': article_blog.id}) }}">edit</a>
 
     {{ include('article_blog/_delete_form.html.twig') }}
