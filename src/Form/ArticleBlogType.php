@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\ArticleBlog;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +15,7 @@ class ArticleBlogType extends AbstractType
     {
         $builder
             ->add('Title')
-            ->add('Content')
+            ->add('Content', CKEditorType::class )
             ->add('imageFile', FileType::class, [
                 'required' => false
             ]);
