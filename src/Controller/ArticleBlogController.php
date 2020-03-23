@@ -66,10 +66,12 @@ class ArticleBlogController extends AbstractController
     /**
      * @Route("/{id}", name="article_blog_show", methods={"GET"})
      */
-    public function show(ArticleBlog $articleBlog): Response
+    public function show(ArticleBlog $articleBlog, ArticleBlogRepository $articleBlogRepository): Response
     {
         return $this->render('article_blog/show.html.twig', [
             'article_blog' => $articleBlog,
+            'article_blogs' => $articleBlogRepository->findAll(),
+
         ]);
     }
 

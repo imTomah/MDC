@@ -5,11 +5,11 @@ fm_elfinder:
             locale: fr # Langue
             editor: ckeditor # Editeur utilisé
             fullscreen: true # Taille d'affichage
-            #theme: smoothness # Thème à utiliser
+            theme: smoothness # Thème à utiliser
             connector:
                 roots:
                     uploads:
-                        #show_hidden: false # Masque les fichiers cachés
+                        show_hidden: false # Masque les fichiers cachés
                         driver: LocalFileSystem # Pilote des fichiers
                         path: uploads/images/content_blog # Chemin d'upload
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg'] # Fichiers autorisés

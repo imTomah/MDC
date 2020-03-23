@@ -3,6 +3,22 @@
     padding: 0;
     margin: 0;
 }
+
+/* NavBar */
+@media (min-width: 768px) {
+    .navbar-brand.abs
+        {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+        }
+    }
+.navbar{
+    background-color: transparent;
+}
+/* ----------- LANDING PAGE ----------- */
+
 /* Header */
 .header{
     display: flex;
@@ -13,18 +29,115 @@
     background-image: url('../images/warren-wong-J33qmCVr02A-unsplash.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
 }
 .content-header{
-    margin-top: 70px;
+    margin-top: 220px;
     font-family: CantataOne;
     color: white;
     font-size: 3.5rem;
-    position: fixed;
+    letter-spacing: .3rem;
+
+}
+
+/* Concept */
+.concept-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.concept-content h2{
+    font-family: 'Cantata One', serif;
+    font-size: 3rem;
+    margin: 50px auto 30px auto;
+}
+.concept-content p {
+    margin-top: 50px;
+}
+
+/* Explication */
+.explication{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.txt-exp{
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+    margin: 50px auto 30px auto;
+}
+.step h4{
+    font-family: 'Cantata One', serif;
+    text-align: center;
+}
+.step img {
+    width: 200px;
+    margin: 0 auto;
+}
+
+/* ANNONCE */
+
+.annonce{
+    background-image: url('../images/Fond-annonce.png');
+    background-size: cover ;
+    background-position:center;
+}
+.annonce a {
+    font-size: 1rem;
+    color: #eee;
+}
+.annonce a:hover {
+    font-size: 1rem;
+    color: white;
+}
+/* fruits */
+.header-fruits{
+    color: white;
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+}
+/* Légumes */
+.header-legumes{
+    color: white;
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+    width: 100vw;
+}
+/* Outils */
+.header-outils{
+    color: white;
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+}
+
+/* PUBLICATION */
+#new_annonce{
+    text-decoration: none;
+}
+.publication{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.publi_txt h4{
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+    color: #212529;
+}
+.publi_txt h4:hover {
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+    color: #212529;
+    text-decoration: none;
 }
 
 
-/* BLOG ANTI GASPI */
+
+
+
+
+/* -------------BLOG ANTI GASPI -----------*/
 
 #header-blog{
     width: 100vw;
@@ -95,4 +208,16 @@
 }
 .info-content p{
     margin: 0 0 0 15px;
+}
+.show-article hr {
+    font-size: 2rem;
+}
+
+/* FOOTER */
+
+.footer a {
+    color: #707070;
+}
+.footer a:hover{
+    color: #8C4C27;
 }

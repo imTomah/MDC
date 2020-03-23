@@ -3,10 +3,99 @@
 {% block title %}Bienvenue{% endblock %}
 
 {% block body %}
-<div class="header">
-    <div class="content-header">
-        <p>Frais. Local. Naturel.</p>
+    {# HEADER #}
+    <div class="header">
+        <div class="content-header">
+            <p>Frais. Local. Naturel.</p>
+        </div>
     </div>
-</div>
-<div class="test" style="height:100vh;"></div>
+
+    {# CONTEXTE #}
+    <div style="height:auto;">
+        <div class="container mt-5 concept-content">
+            <h2 class="mb-4">Le Concept</h2>
+            <p> Avec l’objectif de réduire le gaspillage alimentaire, la plateforme Le marché des cueilleurs met en relation les particuliers et petits producteurs qui veulent échanger ou donner leur surplus de production de leur jardin avec les personnes qui cherchent à s’approvisionner localement.
+                La tendance du manger local s’accentue pour des raisons écologiques, économiques, gastronomiques et militantes, et s’appuie sur des circuits courts de distribution.Dans un contexte d’économie en crise et de prise de conscience écologique généralisée, Le marché des cueilleurs est une bonne solution pour valoriser la production locale entre particuliers. En s’approvisionnant localement et en échangeant ses surplus de production du jardin, on évite le gaspillage, on stimule l’économie locale et on crée du lien humain.
+                L’utilisation du site va permettre au jardinier amateur de partager son surplus de légumes ou fruits ainsi que son matériel en échange de services ou d’autre aliments afin d’encourager une consommation alimentaire variée et de qualité. 
+                Dans un soucis d’écologie le but de cette plateforme est de mettre en relation des personnes à proximité de chez soi.
+            </p>
+        </div>
+        <div class="container my-5 explication col-md-9 col-lg-12 col-xl-10">
+            <h2 class="txt-exp">Comment échanger son surplus de production ?</h2>
+            <div class="step d-flex my-5">
+                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <img src="{{ '/images/Compte.png' }}" alt="Création d'un compte" class="mx-auto">
+                    <h4 class="mb-4">Créé un compte sur notre site </h4>
+                    <p>Depuis 2010, orthophonistes, 
+                        logopèdes et informaticiens, sur tout 
+                        le territoire francophone participe à 
+                        l’amélioration continu
+                    </p>
+                </div>
+                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <img src="{{ '/images/Annonce.png' }}" alt="Création d'un compte">
+                    <h4 class="mb-4">Rédiger votre annonce</h4>
+                    <p>Depuis 2010, orthophonistes, 
+                        logopèdes et informaticiens, sur tout 
+                        le territoire francophone participe à 
+                        l’amélioration continu
+                    </p>
+                </div>
+                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <img src="{{ '/images/Contact.png' }}" alt="Création d'un compte">
+                    <h4 class="mb-4">Votre annonce est en ligne</h4>
+                    <p>Depuis 2010, orthophonistes, 
+                        logopèdes et informaticiens, sur tout 
+                        le territoire francophone participe à 
+                        l’amélioration continu
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# ANNONCE #}
+    <div class="annonce mt-5 d-flex flex-column" style="height:200vh;">
+        <div class="fruits mt-5">
+            <div class="header-fruits d-flex flex-row">
+                <h5>Les Fruits Disponible :</h5>
+                <a href="/fruits">Tout voir</a>
+            </div>
+            {# {% set Last_AB = annonce|length - 4 %}
+            {% for annonce in annonce|slice(Last_AB,4) %} #}
+        </div>
+        <div class="legumes mt-5 d-flex">
+            <div class="header-legumes d-flex flex-row">
+                <div class="d-flex justify-content-start">
+                    <h5>Les Légumes Disponible :</h5>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="/fruits" >Tout voir</a>
+                </div>
+            </div>
+            {# {% set Last_AB = annonce|length - 4 %}
+            {% for annonce in annonce|slice(Last_AB,4) %} #}
+        </div>
+        <div class="outils mt-5">
+            <div class="header-outils d-flex flex-row">
+                <h5>Les Outils Disponible :</h5>
+                <a href="/fruits">Tout voir</a>
+            </div>
+            {# {% set Last_AB = annonce|length - 4 %}
+            {% for annonce in annonce|slice(Last_AB,4) %} #}
+        </div>
+    </div>
+
+    {# PUBLICATION ANNONCE #}
+    <a href="#" id="new_annonce">
+        <div class="mx-auto mb-5 publication">
+                <div class="publi_img">
+                    <img src="{{ '/images/Annonce.png' }}" alt="Création d'un compte" style="width: 200px; margin: 0 auto;">
+                </div>
+                <div class="publi_txt">
+                    <h4 class="mb-4">Publier votre première annonce !</h4>
+                </div>
+        </div>
+    </a>
+
 {% endblock %}

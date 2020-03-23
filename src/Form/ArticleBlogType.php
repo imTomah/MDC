@@ -8,16 +8,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ArticleBlogType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Title')
-            ->add('Content', CKEditorType::class )
+            ->add('Title', TextType::class, [
+                'label' => 'Titre de l\'annonce',
+            ])
+            ->add('Content', CKEditorType::class, [
+                'label' => 'Description'
+            ])
             ->add('imageFile', FileType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Choisir la mignature de l\'article',
+                'help' => 'Cette image sera présente sur la mignature ainsi que sur l\'article'
             ]);
     }
 

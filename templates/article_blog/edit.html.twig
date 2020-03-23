@@ -3,12 +3,17 @@
 {% block title %}Edit ArticleBlog{% endblock %}
 
 {% block body %}
-    <h1>Edit ArticleBlog</h1>
+    <div class="info-content">
+        <a href="{{ path('article_blog_index') }}" class="btn btn-outline-info ml-5">back to list</a>
+    </div>
+    <div class="container d-flex justify-content-center my-5">
+        <h1>Modification de l'article : {{ article_blog.Title }}</h1>
+    </div>
     <div class="container">
     {{ include('article_blog/_form.html.twig', {'button_label': 'Update', 'class': 'btn btn-outline-success' })}}
 
-    <a href="{{ path('article_blog_index') }}" class="btn btn-outline-info">back to list</a>
-
+    <div class="mt-3">
     {{ include('article_blog/_delete_form.html.twig') }}
+    </div>
     </div>
 {% endblock %}

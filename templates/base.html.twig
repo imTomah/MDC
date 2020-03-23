@@ -15,7 +15,15 @@
         {% block menu %}
             {% include "component/navbar.html.twig" %}
         {% endblock %}
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block footer %}
+            {% include "component/footer.html.twig" %}
+        {% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

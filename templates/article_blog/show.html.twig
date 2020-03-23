@@ -3,13 +3,13 @@
 {% block title %}Anti Gaspillage{% endblock %}
 
 {% block body %}
-    <div class="info-content">
-        <a href="{{ path('article_blog_index') }}" class="btn btn-link">Revenir au article</a>
-        <p> <small>Publiée le : {{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('d/m/Y') : '' }}</small></p>
-    </div>
-
-    <div class="header-content">
+    <div class="container mt-5">
         <h1>{{ article_blog.Title }}</h1>
+    </div>
+    <div class="info-content mb-4 ml-5">
+        <a href="{{ path('article_blog_index') }}" class="btn btn-link">Revenir au article</a>
+    </div>
+    <div class="header-content">
      {% if article_blog.filename %}
                 <img src="{{ vich_uploader_asset(article_blog, 'imageFile') | imagine_filter('slide') }}" alt="card-img-top" style="width:100%; height:auto;">
             {% else %} 
@@ -17,31 +17,47 @@
         {% endif %}
     
     </div>
-    <div class="article-content">
+    <div class="article-content container">
     <p>{{ article_blog.Content | raw }}</p>
-    {# type row #}
+    <p> <small>Publiée le : {{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('d/m/Y') : '' }}</small></p>
+    <hr>
     </div>
-    <table class="table">
-        <tbody>
+
+
+    {# Ajout des dernier articles  #}
+    <div class="container my-4">
+     <h3>Consulter aussi nos derniers articles :</h3>
+    </div>
+     <div class="row row-cols-5 justify-content-center">
+     {% set Last_AB = article_blog|length - 4 %}
+    {% for article_blog in article_blogs|slice(Last_AB,4) %}
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        {% if article_blog.filename %}
+            <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+                <img src="{{ vich_uploader_asset(article_blog, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+            </a>    
+            {% else %} 
+            <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+                <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+            </a>   
+        {% endif %}
+        <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">
+            <div class="card-body">
+            <h4 class="card-title" style="color:white;">{{ article_blog.Title }}</h4>
+            {# <p class="card-text">{{ article_blog.Content }}</p> #}
+            </div>
+        </a>
+        <div class="card-header">{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('Y-m-d') : '' }}</div>
+    </div>
+        {% else %}
             <tr>
-                <th>Id</th>
-                <td>{{ article_blog.id }}</td>
+                <td colspan="5">no records found</td>
             </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article_blog.Title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article_blog.Content }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        {% endfor %}
+</div>
+    <div class="test-dev">
     <a href="{{ path('article_blog_edit', {'id': article_blog.id}) }}">edit</a>
 
     {{ include('article_blog/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

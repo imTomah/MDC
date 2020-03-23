@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listener;
+namespace App\Listerner;
 
 use App\Entity\ArticleBlog;
 use Doctrine\Common\EventSubscriber;
