@@ -3,6 +3,12 @@
     padding: 0;
     margin: 0;
 }
+a {
+    color: #707070;
+}
+a:hover{
+    color: #8C4C27;
+}
 
 /* NavBar */
 @media (min-width: 768px) {
