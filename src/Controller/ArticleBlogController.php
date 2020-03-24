@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleBlogController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin", name="admin_blog")
      */
     public function admin(ArticleBlogRepository $articleBlogRepository)
     {

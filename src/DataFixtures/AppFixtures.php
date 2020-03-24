@@ -153,7 +153,8 @@ class AppFixtures extends Fixture
         $article 
             ->setTitle('Des Astuces contre le gaspillage alimentaire')
             ->setContent('Bla Bla Bla UUHHOOOOOO')
-            ->setUpdatedAt($dateNow);
+            ->setUpdatedAt($dateNow)
+            ->setFilename('empty');
         $manager->persist($article);
 
         $manager->flush();

@@ -33,7 +33,7 @@
             {# <p class="card-text">{{ article_blog.Content }}</p> #}
             </div>
         </a>
-        <div class="card-header">{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('Y-m-d') : '' }}</div>
+        <div class="card-header">{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('d/m/Y') : '' }}</div>
     </div>
         {% else %}
             <tr>

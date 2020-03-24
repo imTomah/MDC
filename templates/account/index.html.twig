@@ -3,5 +3,35 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous êtes connecter en tant que : {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ce déconnecter</a>
+        </div>
+    {% endif %}
+<div class="container my-5">
     <h1>Mon Profil</h1>
+    <div class="container row">
+        <div class="container my-3">
+            <h3>Mes informations : </h3>
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Nom d'utilisateur : {{ app.user.username }}</li>
+                    <li class="list-group-item">Email : {{ app.user.email }}</li>
+                    <li class="list-group-item">Mes annonces : <a href="">3</a></li>
+                </ul>
+            </div>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="container my-3">
+            <h3>Accéder à la page d'administration du blog : </h3>
+            <a class="btn btn-info" href="{{ path('admin_blog')}}" role="button">Accéder</a>
+        </div>
+        {% endif %}
+        <div class="container">
+            <h3>Mes Annonces : </h3>
+            
+        </div>
+    </div>
+</div>
 {% endblock %}
