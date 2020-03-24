@@ -3,7 +3,7 @@
 {% block title %}Connectez-vous{% endblock %}
 
 {% block body %}
-<form method="post" class="container col-md-6 col-sm-12 my-5">
+<form method="post" class="container p-5 shadow-sm col-md-6 col-sm-12 my-5">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -16,7 +16,7 @@
 
     <h1 class="h3 mb-3 font-weight-normal">Ce connecter</h1>
     <label for="inputUsername">Pseudo</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-3" required autofocus>
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
