@@ -43,6 +43,11 @@ class Annonce
      */
     private $Type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="annonces")
+     */
+    private $Author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Annonce
     public function setType(?Category $Type): self
     {
         $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->Author;
+    }
+
+    public function setAuthor(?User $Author): self
+    {
+        $this->Author = $Author;
 
         return $this;
     }
