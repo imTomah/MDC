@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed" style="background:transparent;">
+<nav class="navbar navbar-expand-lg navbar-light " style="background:transparent;">
     <div class="d-flex flex-grow-1">
         <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
         <a class="navbar-brand d-none d-lg-inline-block" href="/">
@@ -16,17 +16,19 @@
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
         <ul class="navbar-nav ml-auto flex-nowrap">
             <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item nav-active">Poster une annonce</a>
+                <a href="{{ path('annonce_new') }}" class="nav-link m-2 menu-item nav-active">Poster une annonce</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item">Fruits</a>
+                <a href="{{ path('annonce_index') }}" class="nav-link m-2 menu-item nav-active">Voir les annonces</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item">Légumes</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item">Outils</a>
-            </li>
+            
+
+            {# {% for annonce in menu_categories %}
+                <li class="nav-item">
+                    <a href="{{ path('type_category', {'id':annonce.id})}}" class="nav-link m-2 menu-item">{{ annonce.type }}</a>
+                </li>
+            {% endfor %} #}
+            
             <li class="nav-item">
                 <a href="/article/blog" class="nav-link m-2 menu-item">Recette anti-gaspi</a>
             </li>
@@ -34,7 +36,13 @@
                 <a href="#" class="nav-link m-2 menu-item">A Propos</a>
             </li>
             <li class="nav-item">
-                <a href="{{ path('app_account')}}" class="nav-link m-2 menu-item"><i class="fa fa-user" aria-hidden="true"></i></a>
+                <a href="{{ path('app_account') }}" class="nav-link m-2 menu-item">
+                {% if is_granted('ROLE_USER') %}
+                    Mon Profil
+                {% else %}
+                    Connection
+                {% endif %}
+                <i class="fa fa-user ml-2" aria-hidden="true"></i></a>
             </li>
             
         </ul>

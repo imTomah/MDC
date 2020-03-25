@@ -3,18 +3,30 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Entity\Category;
 use App\Form\AnnonceType;
+use App\Repository\UserRepository;
 use App\Repository\AnnonceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/annonce")
  */
 class AnnonceController extends AbstractController
 {
+    private $menu_categories;
+
+    function __construct( CategoryRepository $repo)
+    {
+        $this->menu_categories = $repo->findAll();
+    }
+
+
     /**
      * @Route("/", name="annonce_index", methods={"GET"})
      */
@@ -22,11 +34,13 @@ class AnnonceController extends AbstractController
     {
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonceRepository->findAll(),
+            'category' => $this->menu_categories
         ]);
     }
 
     /**
      * @Route("/new", name="annonce_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -49,17 +63,31 @@ class AnnonceController extends AbstractController
     }
 
     /**
+     * @Route("/filter/{id}", name="annonce_filter", methods={"GET"})
+     */
+    public function Annonce_Filter(AnnonceRepository $annonceRepository): Response
+    {
+        return $this->render('annonce/annonce_by_category.html.twig', [
+            'annonces' => $annonceRepository->findAll(),
+            'category' => $this->menu_categories
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="annonce_show", methods={"GET"})
      */
     public function show(Annonce $annonce): Response
     {
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
+            'category' => $this->menu_categories
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="annonce_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Annonce $annonce): Response
     {
@@ -80,6 +108,7 @@ class AnnonceController extends AbstractController
 
     /**
      * @Route("/{id}", name="annonce_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Annonce $annonce): Response
     {

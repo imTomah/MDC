@@ -23,6 +23,12 @@ a:hover{
 .navbar{
     background-color: transparent;
 }
+.navbar-collapse{
+    display: block;
+}
+.nav-link{
+    text-align: center!important ;
+}
 /* ----------- LANDING PAGE ----------- */
 
 /* Header */

@@ -8,9 +8,13 @@
     <div class="container shadow-sm py-3">
         <p>Filtre :</p>
         <div class="filter-nav">
-            <button class="btn btn-success active" data-filter="">Toute les annonces disponible</button>
+            <a class="btn btn-primary" href="{{ path('annonce_index')}}" data-filter="">Toute les annonces disponible</a>
         {% for t in category %}
-            <a class="btn btn-primary" href="{{ path('annonce_filter', {'id': t.id})}}">{{ t.type }}</a>
+            {% if t.id == filtre %}
+              <a class="btn btn-success active" href="{{ path('annonce_filter', {'id': t.id})}}">{{ t.type }}</a>
+            {% else %}
+              <a class="btn btn-primary" href="{{ path('annonce_filter', {'id': t.id})}}">{{ t.type }}</a>
+            {% endif %}
         {% endfor %}
         </div>
     </div>
