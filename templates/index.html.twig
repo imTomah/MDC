@@ -73,8 +73,15 @@
                 <h5>Les Fruits Disponible :</h5>
                 <a href="/fruits">Tout voir</a>
             </div>
-            {# {% set Last_AB = annonce|length - 4 %}
-            {% for annonce in annonce|slice(Last_AB,4) %} #}
+            <div class="container">
+                {# {% set Last_AB = annonces|length - 4 %} #}
+               {% dump annonces|Type|id|17 %}
+                {% for annonce in annonces %}
+                    {% block card_annonce %}
+                            {% include "component/card_annonce.html.twig" %}
+                    {% endblock %}
+                {% endfor %}
+            </div>
         </div>
         <div class="legumes mt-5 d-flex">
             <div class="header-legumes d-flex flex-row">

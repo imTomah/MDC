@@ -8,6 +8,7 @@ use App\Form\AnnonceType;
 use App\Repository\UserRepository;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,10 +21,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AnnonceController extends AbstractController
 {
     private $menu_categories;
+    public $menu_departement;
 
-    function __construct( CategoryRepository $repo)
+
+    function __construct( CategoryRepository $repoC, DepartementRepository $repoD)
     {
-        $this->menu_categories = $repo->findAll();
+        $this->menu_categories      = $repoC->findAll();
+        $this->menu_departement     = $repoD->findAll();
+
     }
 
 
@@ -33,8 +38,10 @@ class AnnonceController extends AbstractController
     public function index(AnnonceRepository $annonceRepository): Response
     {
         return $this->render('annonce/index.html.twig', [
-            'annonces' => $annonceRepository->findAll(),
-            'category' => $this->menu_categories
+            'annonces'      => $annonceRepository->findAll(),
+            'category'      => $this->menu_categories,
+            "departement"   => $this->menu_departement,
+
         ]);
     }
 
@@ -63,9 +70,9 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/filter/{id}", name="annonce_filter", methods={"GET"})
+     * @Route("/filter/{id}", name="annonce_type", methods={"GET"})
      */
-    public function Annonce_Filter(AnnonceRepository $annonceRepository): Response
+    public function Annonce_type(AnnonceRepository $annonceRepository): Response
     {
         return $this->render('annonce/annonce_by_category.html.twig', [
             'annonces' => $annonceRepository->findAll(),

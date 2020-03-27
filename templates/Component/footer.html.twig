@@ -24,14 +24,17 @@
         <!-- Links -->
         <h6 class="text-uppercase font-weight-bold">Annonces</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        
-        {% for t in category %}
-          <p>
-              <a href="{{ path('annonce_filter', {'id': t.id})}}">{{ t.title }}</a>
-          </p>
-        {% endfor %}
         <p>
-          <a href="#!">Blog Anti-gaspi</a>
+          <a href="{{ path('annonce_index') }}">Fruits</a>
+        </p>
+        <p>
+          <a href="{{ path('annonce_index') }}">Légumes</a>
+        </p>
+        <p>
+          <a href="{{ path('annonce_index') }}">Outils</a>
+        </p>
+        <p>
+          <a href="{{ path('article_blog_index') }}">Blog Anti-gaspi</a>
         </p>
 
       </div>
@@ -43,14 +46,21 @@
         <!-- Links -->
         <h6 class="text-uppercase font-weight-bold">Liens utiles</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        {% if is_granted('ROLE_USER') %}
+            <p>
+              <a href="{{ path('app_account') }}">Mon Profil</a>
+            </p>
+        {% else %}
+            <p>
+              <a href="{{ path('app_account') }}">Connection</a>
+            </p>
+        {% endif %}
+      
         <p>
-          <a href="/login">Connection</a>
+          <a href="{{ path('app_register') }}">Crée un compte</a>
         </p>
         <p>
-          <a href="/register">Crée un compte</a>
-        </p>
-        <p>
-          <a href="/article/blog/">Blog Anti-gasp</a>
+          <a href="{{ path('article_blog_index') }}">Blog Anti-gasp</a>
         </p>
         <p>
           <a href="#!">Contact</a>

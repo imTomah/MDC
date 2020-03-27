@@ -16,10 +16,13 @@
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
         <ul class="navbar-nav ml-auto flex-nowrap">
             <li class="nav-item">
-                <a href="{{ path('annonce_new') }}" class="nav-link m-2 menu-item nav-active">Poster une annonce</a>
+                <a href="{{ path('accueil') }}" class="nav-link m-2 menu-item">ACCUEIL</a>
             </li>
             <li class="nav-item">
-                <a href="{{ path('annonce_index') }}" class="nav-link m-2 menu-item nav-active">Voir les annonces</a>
+                <a href="{{ path('annonce_new') }}" class="nav-link m-2 menu-item nav-active">POSTER UNE ANNONCE</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('annonce_index') }}" class="nav-link m-2 menu-item nav-active">VOIR LES ANNONCES</a>
             </li>
             
 
@@ -30,10 +33,7 @@
             {% endfor %} #}
             
             <li class="nav-item">
-                <a href="/article/blog" class="nav-link m-2 menu-item">Recette anti-gaspi</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item">A Propos</a>
+                <a href="/article/blog" class="nav-link m-2 menu-item">RECETTE ANTI GASPI</a>
             </li>
             <li class="nav-item">
                 <a href="{{ path('app_account') }}" class="nav-link m-2 menu-item">

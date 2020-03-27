@@ -3,41 +3,76 @@
 {% block title %}Annonce index{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Annonce index</h1>
-    <div class="container shadow-sm py-3">
-        <p>Filtre :</p>
-        <div class="filter-nav">
-            <button class="btn btn-success active" data-filter="">Toute les annonces disponible</button>
-        {% for t in category %}
-            <a class="btn btn-primary" href="{{ path('annonce_filter', {'id': t.id})}}">{{ t.type }}</a>
-        {% endfor %}
-        </div>
-    </div>
-    <div class=" container row my-5 shadow-sm py-5">
-        {% for annonce in annonces %}
-            <div class="card" style="width: 18rem;">
-                {# {% if annonce.filename %}
-                    <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
-                        <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
-                    </a>
-                    {% else %}  #}
-                    <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
-                        <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
-                    </a>   
-                {# {% endif %} #}
-                <div class="card-body">
-                    <h5 class="card-title">{{ annonce.Title }}</h5>
-                    <p class="card-text">{{ annonce.Content }}</p>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Voir plus</a>
+<div class="header-annonce">
+</div>
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item ariane"><a href="{{ path('accueil') }}">Accueil</a></li>
+        <li class="breadcrumb-item ariane"><a href="{{ path('annonce_index') }}">Toutes les annonces</a></li>
+    </ol>
+    </nav>
+    
+    <div class="row">
+        <button type="button" data-toggle="collapse" data-target="#filters" class="d-block d-md-none btn btn-primary btn-block mb-3">Filters &dtrif;</button>
+        <div class="col-md-3 order-md-first shadow-sm mt-5" style="max-height:400px;">
+            <div id="filters" class="collapse d-block">
+                <!------------Search filters------------->
+                <!--Category-->
+                <h2 class="ml-3">Filtre</h2>
+                <hr>
+                <div class="filter-nav my-3 ml-2">
+                    <p>Par type de produits :</p>
+                        <a class="btn btn-brown m-1" data-filter="" href="{{ path('annonce_index') }}">Toute les annonces</a>
+                        <br>
+                    {% for t in category %}
+                        <a class="btn btn-primary m-1" href="{{ path('annonce_type', {'id': t.id})}}">{{ t.type }}</a>
+                    {% endfor %}
+                </div>
+                <!--Departement-->
+                <p class="my-auto ml-2 pb-3">Par departement :</p>
+                    <a class="btn btn-brown m-2" data-filter="" href="{{ path('annonce_index') }}">Toute la France</a>
+                <div class="btn-group ml-2 mb-2">
+                    <button type="button" class="btn btn-primary dropdown-toggle shadow" data-toggle="dropdown">Choisir un departement <span class="caret"></span></button>
+                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                        {% for d in departement %}
+                        <li>
+                        <a href="{{ path('annonce_departement', {'id': d.id})}}">{{ d.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
         </div>
-</div>
+
+
+            <!--Search results-->
+        <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch p-4">
+            <div class="row d-flex align-items-stretch">
+             {% for annonce in annonces %}
+                {% block card_annonce %}
+                        {% include "component/card_annonce.html.twig" %}
+                {% endblock %}
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucune annonce trouvé.</td>
+                </tr>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation" style="margin-top:30px;">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédent</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Suivant</a>
+            </li>
+        </ul>
+    </nav>
     <a href="{{ path('annonce_new') }}">Create new</a>
 {% endblock %}

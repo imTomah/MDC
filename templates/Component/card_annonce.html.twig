@@ -1,0 +1,23 @@
+<div class="col-md-4 d-flex align-items-stretch my-3">
+            <div class="card card-annonce" style="width: 18rem;">
+                {# {% if annonce.filename %}
+                    <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
+                        <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+                    </a>
+                    {% else %}  #}
+                    <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
+                        <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+                    </a>   
+                {# {% endif %} #}
+                <div class="card-body">
+                    <h5 class="card-title">{{ annonce.Title }}</h5>
+                    <p class="card-text"><small class="text-muted"><i class="fa fa-balance-scale"></i>Quantité : {{ annonce.Quantity }}Kg</small></p>
+                    <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>imTomah</small></p>
+                    <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>23 Mars 2020</small></p>
+                    {# <p class="card-text">{{ annonce.content|raw }}</p> #}
+                    <div class="d-flex align-items-end">
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-brown">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+            </div>
