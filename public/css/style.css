@@ -10,6 +10,7 @@ a:hover{
     color: #8C4C27;
 }
 
+
 /* NavBar */
 @media (min-width: 768px) {
     .navbar-brand.abs
@@ -27,7 +28,7 @@ a:hover{
     display: block;
 }
 .nav-link{
-    text-align: center!important ;
+    text-align: center!important;
 }
 /* ----------- LANDING PAGE ----------- */
 
@@ -103,8 +104,25 @@ a:hover{
     font-size: 1rem;
     color: white;
 }
+.annonce h4{
+    font-size: 2.2rem;
+}
+.annonce .card{
+    border: none!important;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+}
+.annonce .card img{
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+}
 /* fruits */
 .header-fruits{
+    color: white;
+    font-family: 'Cantata One', serif;
+    font-size: 2rem;
+}
+.header-card-blog{
     color: white;
     font-family: 'Cantata One', serif;
     font-size: 2rem;

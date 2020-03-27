@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
@@ -47,6 +51,25 @@ class Annonce
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="annonces")
      */
     private $Author;
+
+    // Import de l'image 
+
+    /**
+     * 
+     * @var File|null
+     * @Assert\Image(
+     *      mimeTypes="image/jpeg"
+     * )
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string|null
+     */
+    private $filename;
 
     public function getId(): ?int
     {
@@ -122,6 +145,47 @@ class Annonce
     {
         $this->Author = $Author;
 
+        return $this;
+    }
+
+    // Getter - Setter Image upload
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     * @return Annonce
+     */
+    public function setFilename(?string $filename): Annonce
+    {
+        $this->filename = $filename;
+        if ($this->filename instanceof UploadedFile){
+            $this->UpdatedAt= new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile() : ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return Annonce
+     */
+    public function setImageFile(?File $imageFile): Annonce
+    {
+        $this->imageFile = $imageFile;
         return $this;
     }
 }

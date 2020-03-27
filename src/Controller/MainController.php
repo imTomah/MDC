@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Category;
 use App\Repository\AnnonceRepository;
+use App\Repository\ArticleBlogRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,34 +16,28 @@ class MainController extends AbstractController
     public $menu_categories;
     public $menu_departement;
     public $annonces;
-    public $annoncesFruits;
-    public $annoncesLegumes;
-    public $annoncesOutils;
 
 
-    function __construct(CategoryRepository $repoC, AnnonceRepository $repoA, DepartementRepository $repoD) {
+    function __construct(CategoryRepository $repoC, AnnonceRepository $repoA, DepartementRepository $repoD, ArticleBlogRepository $repoBlog) {
         $this->menu_categories          = $repoC->findAll();
         $this->menu_departement         = $repoD->findAll();
         $this->annonces                 = $repoA->findAll();
-        $this->annoncesFruits           = $repoA->findBy(array('Type' => 'Fruits' ));
-        $this->annoncesLegumes          = $repoA->findBy(array('Type' => 'Legumes'));
-        $this->annoncesOutils           = $repoA->findBy(array('Type' => 'Outils' ));
+        $this->article_blogs            = $repoBlog->findAll();
+
     }
     
     /**
      * @Route("/", name="accueil")
      */
-    public function index(CategoryRepository $repo, AnnonceRepository $annonceRepository)
+    public function index(CategoryRepository $repo, AnnonceRepository $annonceRepository, ArticleBlogRepository $articleBlogRepository)
     {
         $category = $repo->findAll();
         return $this->render('index.html.twig', [
             'controller_name'       => 'MainController',
             'menu_categories'       => $this->menu_categories,
             'menu_departement'      => $this->menu_departement,
-            'annoncesFruits'        => $this->annoncesFruits,
-            'annoncesLegumes'       => $this->annoncesLegumes,
-            'annoncesOutils'        => $this->annoncesOutils,
             'annonces'              => $annonceRepository->findAll(),
+            'article_blogs'         => $articleBlogRepository->findAll(),
         ]);
     }
 

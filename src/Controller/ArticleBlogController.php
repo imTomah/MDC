@@ -84,6 +84,8 @@ class ArticleBlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $now= new \DateTime('now', new DateTimeZone('Europe/Paris'));
+            $articleBlog->setUpdatedAt($now);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('article_blog_index');
