@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -19,6 +20,7 @@ class ArticleBlogController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin_blog")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function admin(ArticleBlogRepository $articleBlogRepository)
     {
@@ -40,6 +42,7 @@ class ArticleBlogController extends AbstractController
 
     /**
      * @Route("/admin/new", name="article_blog_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -69,14 +72,14 @@ class ArticleBlogController extends AbstractController
     public function show(ArticleBlog $articleBlog, ArticleBlogRepository $articleBlogRepository): Response
     {
         return $this->render('article_blog/show.html.twig', [
-            'article_blog' => $articleBlog,
+            'article_blog'  => $articleBlog,
             'article_blogs' => $articleBlogRepository->findAll(),
-
         ]);
     }
 
     /**
      * @Route("/admin/{id}/edit", name="article_blog_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, ArticleBlog $articleBlog): Response
     {
@@ -92,13 +95,14 @@ class ArticleBlogController extends AbstractController
         }
 
         return $this->render('article_blog/edit.html.twig', [
-            'article_blog' => $articleBlog,
-            'form' => $form->createView(),
+            'article_blog'  => $articleBlog,
+            'form'          => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/admin/{id}", name="article_blog_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, ArticleBlog $articleBlog): Response
     {

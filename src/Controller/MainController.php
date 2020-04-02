@@ -17,7 +17,6 @@ class MainController extends AbstractController
     public $menu_departement;
     public $annonces;
 
-
     function __construct(CategoryRepository $repoC, AnnonceRepository $repoA, DepartementRepository $repoD, ArticleBlogRepository $repoBlog) {
         $this->menu_categories          = $repoC->findAll();
         $this->menu_departement         = $repoD->findAll();
@@ -56,6 +55,7 @@ class MainController extends AbstractController
             "departement"   => $this->menu_departement,
             ]);
     }
+
     /**
      * @Route("/departement/{id}", name="annonce_departement")
      */
@@ -69,5 +69,12 @@ class MainController extends AbstractController
             "category"      => $this->menu_categories,
             "departement"   => $this->menu_departement
             ]);
+    }
+
+    public function annonce_account(AnnonceRepository $repoA)
+    {
+        return $this->render('account/index.html.twig', [
+            'annonces'        => $repoA->findAll(),           
+        ]);
     }
 }

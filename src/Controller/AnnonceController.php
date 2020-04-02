@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use DateTimeZone;
 use App\Entity\Annonce;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Form\AnnonceType;
 use App\Repository\UserRepository;
 use App\Repository\AnnonceRepository;
@@ -12,6 +14,7 @@ use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -56,6 +59,14 @@ class AnnonceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Updated At :
+            $now= new \DateTime('now', new DateTimeZone('Europe/Paris'));
+            $annonce->setUpdatedAt($now);
+
+            // User : 
+            $author = $this->getUser();
+            $annonce->setAuthor($author);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
@@ -86,8 +97,8 @@ class AnnonceController extends AbstractController
     public function show(Annonce $annonce): Response
     {
         return $this->render('annonce/show.html.twig', [
-            'annonce' => $annonce,
-            'category' => $this->menu_categories
+            'annonce'   => $annonce,
+            'category'  => $this->menu_categories,
 
         ]);
     }
@@ -102,9 +113,17 @@ class AnnonceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Updated At :
+            $now= new \DateTime('now', new DateTimeZone('Europe/Paris'));
+            $annonce->setUpdatedAt($now);
+
+            // User : 
+            $author = $this->getUser();
+            $annonce->setAuthor($author);
+            
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('annonce_index');
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('annonce/edit.html.twig', [
@@ -125,6 +144,6 @@ class AnnonceController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('annonce_index');
+        return $this->redirectToRoute('app_account');
     }
 }

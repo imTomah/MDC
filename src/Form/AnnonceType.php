@@ -11,6 +11,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AnnonceType extends AbstractType
@@ -43,11 +44,14 @@ class AnnonceType extends AbstractType
                 'class'=> Category::class,
                 'label'=>'Type de produit'
             ])
-            // ->add('Author', EntityType::class, [
-            //     'choice_label'=> 'Username',
-            //     'class'=> User::class,
-            //     'label'=>'Utilisateur'
-            // ])
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'label' => 'Choisir l\'image de l\'annonce',
+                'help' => 'Cette image sera présente sur la mignature ainsi que sur l\'annonce (Taille max : 2Mo)',
+                'attr' => [
+                    'placeholder' => 'Importer l\'image de votre ordinateur'
+                ]
+            ]);
         ;
     }
 

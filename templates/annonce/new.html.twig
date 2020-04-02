@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Annonce{% endblock %}
+{% block title %}Nouvelle annonce{% endblock %}
 
 {% block body %}
-    <h1>Create new Annonce</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item ariane"><a href="{{ path('accueil') }}">Accueil</a></li>
+        <li class="breadcrumb-item ariane"><a href="{{ path('annonce_index') }}">Toutes les annonces</a></li>
+    </ol>
+    </nav>
+    <div class="container">
+        <h1 class="my-5">Publier une nouvelle annonce</h1>
+        {{ include('annonce/_form.html.twig') }}
+    </div>
 
-    {{ include('annonce/_form.html.twig') }}
-
-    <a href="{{ path('annonce_index') }}">back to list</a>
 {% endblock %}

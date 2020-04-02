@@ -14,47 +14,37 @@
     <div style="height:auto;">
         <div class="container mt-5 concept-content">
             <h2 class="mb-4">Le Concept</h2>
-            <p> Avec l’objectif de réduire le gaspillage alimentaire, la plateforme Le marché des cueilleurs met en relation les particuliers et petits producteurs qui veulent échanger ou donner leur surplus de production de leur jardin avec les personnes qui cherchent à s’approvisionner localement.
+            <p> <span>A</span>vec l’objectif de réduire le gaspillage alimentaire, la plateforme Le marché des cueilleurs met en relation les particuliers et petits producteurs qui veulent échanger ou donner leur surplus de production de leur jardin avec les personnes qui cherchent à s’approvisionner localement.
                 La tendance du manger local s’accentue pour des raisons écologiques, économiques, gastronomiques et militantes, et s’appuie sur des circuits courts de distribution.Dans un contexte d’économie en crise et de prise de conscience écologique généralisée, Le marché des cueilleurs est une bonne solution pour valoriser la production locale entre particuliers. En s’approvisionnant localement et en échangeant ses surplus de production du jardin, on évite le gaspillage, on stimule l’économie locale et on crée du lien humain.
                 L’utilisation du site va permettre au jardinier amateur de partager son surplus de légumes ou fruits ainsi que son matériel en échange de services ou d’autre aliments afin d’encourager une consommation alimentaire variée et de qualité. 
                 Dans un soucis d’écologie le but de cette plateforme est de mettre en relation des personnes à proximité de chez soi.
             </p>
         </div>
-        <div class="container mt-5 explication col-md-9 col-lg-12 col-xl-10">
+        <div class="container my-5 explication col-md-9 col-lg-12 col-xl-10">
             <h2 class="txt-exp">Comment échanger son surplus de production ?</h2>
             <div class="step d-flex mt-5">
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto">
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch">
                     <img src="{{ '/images/Compte.png' }}" alt="Création d'un compte">
                     <h4 class="mb-4">Créé un compte sur notre site </h4>
-                </div>
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto" style="max-weight:80px;">
-                    <img src="{{ '/images/Annonce.png' }}" alt="Création d'un compte">
-                    <h4 class="mb-4">Rédiger votre annonce</h4>
-                </div>
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto ">
-                    <img src="{{ '/images/Contact.png' }}" alt="Création d'un compte">
-                    <h4 class="mb-4">Votre annonce est en ligne</h4>
-                </div>
-            </div>
-
-        <div class="container explication col-md-9 col-lg-12 col-xl-10">
-            <div class="step d-flex mb-5">
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <p >Depuis 2010, orthophonistes, 
                         logopèdes et informaticiens, sur tout 
                         le territoire francophone participe à 
                         l’amélioration continu
                     </p>
                 </div>
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <p class="text-center">Depuis 2010, orthophonistes, 
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch" style="max-weight:80px;">
+                    <img src="{{ '/images/Annonce.png' }}" alt="Création d'un compte">
+                    <h4 class="mb-4">Rédiger votre annonce</h4>
+                    <p >Depuis 2010, orthophonistes, 
                         logopèdes et informaticiens, sur tout 
                         le territoire francophone participe à 
                         l’amélioration continu
                     </p>
                 </div>
-                <div class="step1 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <p class="text-right">Depuis 2010, orthophonistes, 
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch">
+                    <img src="{{ '/images/Contact.png' }}" alt="Création d'un compte">
+                    <h4 class="mb-4">Votre annonce est en ligne</h4>
+                    <p >Depuis 2010, orthophonistes, 
                         logopèdes et informaticiens, sur tout 
                         le territoire francophone participe à 
                         l’amélioration continu
@@ -62,35 +52,36 @@
                 </div>
             </div>
         </div>
-        </div>
-
     </div>
+    <div class="whitespace"></div>
 
     {# ANNONCE #}
     <div class="annonce mt-5 d-flex flex-column" style="height:200vh;">
-        <div class="lastAnnonce mt-5" style="margin-top:200px;">
-            <div class="header-fruits d-flex flex-row mt-5 ml-3">
-                <h4>Les dernières annonces :</h4>
+        <div class="lastAnnonce mt-5" style="margin-top:300px;">
+            <div class="header-fruits d-flex justify-content-center flex-column flex-row mt-5">
+                <h4 class="text-center">LES DERNIÈRES ANNONCES</h4>
+                <hr class="mx-auto mb-5 mt-3">
             </div>
+            
             <div class="container">
-                <div class="row mt-5">
+                <div class="row">
                  {% set Last_AB = annonces|length - 4 %}
                 {% for annonce in annonces|slice(Last_AB, 4) %}
-                 <div class="col-md-3 col-sm-2">
-                    <div class="card card-annonce shadow" style="width: 15rem;">
-                        {# {% if annonce.filename %}
-                            <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
+                 <div class="col-md-3 col-sm-4 col-lg-3">
+                    <div class="card card-annonce shadow mr-2" style="width: 15rem;">
+                             {% if annonce.filename %}
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
                                 <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
                             </a>
-                            {% else %}  #}
-                            <a href="{{ path('article_blog_show', {'id': annonce.id}) }}">
+                            {% else %} 
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
                                 <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
                             </a>   
-                        {# {% endif %} #}
+                            {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ annonce.Title }}</h5>
                             <p class="card-text"><small class="text-muted"><i class="fa fa-balance-scale"></i>Quantité : {{ annonce.Quantity }}Kg</small></p>
-                            <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>imTomah</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>{{ annonce.author.username }}</small></p>
                             <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>23 Mars 2020</small></p>
                             {# <p class="card-text">{{ annonce.content|raw }}</p> #}
                             <div class="d-flex align-items-end">
@@ -101,10 +92,11 @@
                  </div>
                 {% endfor %}
                 </div>
-            </div>
-            <div class="lien-annonce d-flex justify-content-end mr-3 mt-3">
+                <div class="lien-annonce d-flex justify-content-end mr-3 mt-3">
                 <a href="{{ path('annonce_index') }}">Voir toutes les annonces <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </div>
+            </div>
+            
         </div>
         
 

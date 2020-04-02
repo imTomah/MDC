@@ -19,7 +19,7 @@ class ArticleBlogType extends AbstractType
                 'label' => 'Titre de l\'annonce',
             ])
             ->add('Content', CKEditorType::class, [
-                'label' => 'Description'
+                'label' => 'Contenu de l\'article'
             ])
             ->add('imageFile', FileType::class, [
                 'required' => false,

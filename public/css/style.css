@@ -24,11 +24,24 @@ a:hover{
 .navbar{
     background-color: transparent;
 }
+.logo {
+    width: 90px;
+    height: auto;
+}
 .navbar-collapse{
     display: block;
 }
 .nav-link{
     text-align: center!important;
+}
+
+/* ------Login-------- */
+.img-login {
+    width: 35%;
+    height: 60vh;
+    background-image: url('../images/priscilla-du-preez-login.jpg');
+    background-size: cover;
+    background-position: center;
 }
 /* ----------- LANDING PAGE ----------- */
 
@@ -42,6 +55,7 @@ a:hover{
     background-image: url('../images/warren-wong-J33qmCVr02A-unsplash.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 .content-header{
     margin-top: 220px;
@@ -66,6 +80,12 @@ a:hover{
 }
 .concept-content p {
     margin-top: 50px;
+    font-family: 'Playfair Display', serif!important;
+    letter-spacing: .1rem;
+}
+.concept-content p span{
+    font-size: 2rem;
+    font-weight: Bolder;
 }
 
 /* Explication */
@@ -88,7 +108,9 @@ a:hover{
     width: 200px;
     margin: 0 auto;
 }
-
+.whitespace{
+    height: 10vh;
+}
 /* ANNONCE */
 
 .annonce{
@@ -106,6 +128,11 @@ a:hover{
 }
 .annonce h4{
     font-size: 2.2rem;
+}
+.annonce hr {
+    width: 10vw;
+    font-size: 3px;
+    background-color: #fff;
 }
 .annonce .card{
     border: none!important;

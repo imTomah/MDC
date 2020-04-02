@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
+ * @Vich\Uploadable
  */
 class Annonce
 {
@@ -60,7 +64,7 @@ class Annonce
      * @Assert\Image(
      *      mimeTypes="image/jpeg"
      * )
-     * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
+     * @Vich\UploadableField(mapping="annonce_image", fileNameProperty="filename")
      */
     private $imageFile;
 
@@ -70,6 +74,18 @@ class Annonce
      * @var string|null
      */
     private $filename;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $UpdatedAt;
+
+
+    public function __construct() 
+    {
+        $dateNow = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->setUpdatedAt($dateNow);
+    }
 
     public function getId(): ?int
     {
@@ -186,6 +202,18 @@ class Annonce
     public function setImageFile(?File $imageFile): Annonce
     {
         $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->UpdatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $UpdatedAt): self
+    {
+        $this->UpdatedAt = $UpdatedAt;
+
         return $this;
     }
 }

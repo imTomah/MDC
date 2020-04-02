@@ -3,28 +3,25 @@
 {% block title %}Anti Gaspillage{% endblock %}
 
 {% block body %}
+    <div class="container">
     <h1>Bienvenue sur la page d'administration</h1>
-
+                <a href="{{ path('article_blog_new') }}" class="btn btn-outline-success my-4">Create new</a>
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for article_blog in article_blogs %}
             <tr>
-                <td>{{ article_blog.id }}</td>
                 <td>{{ article_blog.Title }}</td>
-                <td>{{ article_blog.Content }}</td>
                 <td>{{ article_blog.UpdatedAt ? article_blog.UpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}">show</a>
-                    <a href="{{ path('article_blog_edit', {'id': article_blog.id}) }}">edit</a>
+                    <a href="{{ path('article_blog_show', {'id': article_blog.id}) }}" class="btn btn-brown">Voir l'article</a>
+                    <a href="{{ path('article_blog_edit', {'id': article_blog.id}) }}" class="btn btn-info">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +31,8 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('article_blog_new') }}" class="btn btn-outline-success">Create new</a>
+
+    
 {% endblock %}

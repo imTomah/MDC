@@ -7,7 +7,7 @@
         <a href="{{ path('article_blog_index') }}" class="btn btn-outline-info ml-5">back to list</a>
     </div>
     <div class="container d-flex justify-content-center my-5">
-        <h1>Modification de l'article : {{ article_blog.Title }}</h1>
+        <h1>Modification de l'article : <br> {{ article_blog.Title }}</h1>
     </div>
     <div class="container">
     {{ include('article_blog/_form.html.twig', {'button_label': 'Update', 'class': 'btn btn-outline-success' })}}

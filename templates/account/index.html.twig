@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
     {% if app.user %}
         <div class="mb-3">
             Vous êtes connecter en tant que : {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ce déconnecter</a>
@@ -18,30 +19,54 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Nom d'utilisateur : {{ app.user.username }}</li>
                     <li class="list-group-item">Email : {{ app.user.email }}</li>
+                    <li class="list-group-item">id : {{ app.user.id }}</li>
                     <li class="list-group-item">Mes annonces : <a href="">3</a></li>
                 </ul>
             </div>
         </div>
+
         {% if is_granted('ROLE_ADMIN') %}
             <div class="container my-3">
             <h3>Accéder à la page d'administration du blog : </h3>
             <a class="btn btn-info" href="{{ path('admin_blog')}}" role="button">Accéder</a>
         </div>
         {% endif %}
+        
         <div class="container">
             <h3>Mes Annonces : </h3>
-            {# {% for a in annonceByUser %}
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ annonce.Title }}</h5>
-                        <p class="card-text">{{ annonce.Content }}</p>
-                        <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Go somewhere</a>
+            <div class="row">
+             {% for annonce in annonces %}
+                {% if annonce.author.id == app.user.id %}
+                <div class="col-md-4 d-flex align-items-stretch my-3">
+                    <div class="card card-annonce" style="width: 18rem;">
+                        {% if annonce.filename %}
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
+                                <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+                            </a>
+                            {% else %} 
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
+                                <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+                            </a>  
+                            {% endif %} 
+                        <div class="card-body">
+                            <h5 class="card-title">{{ annonce.Title }}</h5>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-balance-scale"></i>Quantité : {{ annonce.Quantity }}Kg</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>{{ annonce.author.username }}</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>23 Mars 2020</small></p>
+                            {# <p class="card-text">{{ annonce.content|raw }}</p> #}
+                            <div class="d-flex align-items-end">
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-brown">Voir plus</a>
+                            <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="badge badge-info mx-2" style="color:white;">Modifier</a>
+                                {{ include('annonce/_delete_form.html.twig') }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                {% endfor %} #}
-            
+                    </div>
+                {% endif %}
+            {% endfor %} 
+            </div>
         </div>
+
     </div>
 </div>
 {% endblock %}
