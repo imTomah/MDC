@@ -22,32 +22,25 @@
         </div>
         <div class="container my-5 explication col-md-9 col-lg-12 col-xl-10">
             <h2 class="txt-exp">Comment échanger son surplus de production ?</h2>
+            <p>C'est simple, en seulement 3 étapes!</p>
+            <hr>
             <div class="step d-flex mt-5">
-                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch">
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch justify-content-start">
                     <img src="{{ '/images/Compte.png' }}" alt="Création d'un compte">
-                    <h4 class="mb-4">Créé un compte sur notre site </h4>
-                    <p >Depuis 2010, orthophonistes, 
-                        logopèdes et informaticiens, sur tout 
-                        le territoire francophone participe à 
-                        l’amélioration continu
-                    </p>
+                    <h4 class="mb-4">Créé un compte</h4>
+                    <p> Rendez-vous sur <a href="/register">la page d'inscription</a> pour configurer votre compte</p>
                 </div>
-                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch" style="max-weight:80px;">
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch justify-content-start" style="max-weight:80px;">
                     <img src="{{ '/images/Annonce.png' }}" alt="Création d'un compte">
                     <h4 class="mb-4">Rédiger votre annonce</h4>
-                    <p >Depuis 2010, orthophonistes, 
-                        logopèdes et informaticiens, sur tout 
-                        le territoire francophone participe à 
-                        l’amélioration continu
+                    <p>Une fois que vous êtes connecter vous pouvez acceder au <a href="{{ path('annonce_new') }}">formulaire de création d'annonce.</a>         
                     </p>
                 </div>
-                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch">
+                <div class="step1 col-md-3 col-lg-3 col-xl-3 mx-auto d-flex flex-column align-self-stretch justify-content-start">
                     <img src="{{ '/images/Contact.png' }}" alt="Création d'un compte">
                     <h4 class="mb-4">Votre annonce est en ligne</h4>
-                    <p >Depuis 2010, orthophonistes, 
-                        logopèdes et informaticiens, sur tout 
-                        le territoire francophone participe à 
-                        l’amélioration continu
+                    <p >Votre annonce est en ligne, tous les utilisateurs peuvent la voir et vous contactez par mail. <br>
+                        Vous pouvez modifier cette annonce a travers <a href="{{ path('app_account') }}">votre profil</a> 
                     </p>
                 </div>
             </div>
@@ -56,6 +49,7 @@
     <div class="whitespace"></div>
 
     {# ANNONCE #}
+
     <div class="annonce mt-5 d-flex flex-column" style="height:200vh;">
         <div class="lastAnnonce mt-5" style="margin-top:300px;">
             <div class="header-fruits d-flex justify-content-center flex-column flex-row mt-5">
@@ -93,16 +87,17 @@
                 {% endfor %}
                 </div>
                 <div class="lien-annonce d-flex justify-content-end mr-3 mt-3">
-                <a href="{{ path('annonce_index') }}">Voir toutes les annonces <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-            </div>
+                    <a href="{{ path('annonce_index') }}">Voir toutes les annonces <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
             </div>
             
         </div>
         
 
         <div class="fruits mt-5">
-            <div class="header-card-blog d-flex flex-row mt-5 ml-3">
-                <h4>Les derniers articles :</h4>
+            <div class="header-card-blog d-flex justify-content-center flex-column flex-row mt-5">
+                <h4 class="text-center">LES DERNIERS ARTICLES</h4>
+                <hr class="mx-auto mb-5 mt-3">
             </div>
             <div class="container">
                 <div class="row mt-5">
@@ -131,13 +126,11 @@
                  </div>
                 {% endfor %}
                 </div>
-            </div>
             <div class="lien-annonce d-flex justify-content-end mr-3 mt-3">
                 <a href="{{ path('article_blog_index') }}">Lire tous les articles <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </div>
+            </div>
         </div>
-
-
 
     {# PUBLICATION ANNONCE #}
     <a href="#" id="new_annonce" style="margin-top:300px;">

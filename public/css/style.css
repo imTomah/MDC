@@ -37,9 +37,27 @@ a:hover{
 
 /* ------Login-------- */
 .img-login {
-    width: 35%;
-    height: 60vh;
+    width: 50%;
+    margin-left: -15px;
     background-image: url('../images/priscilla-du-preez-login.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.content-login p {
+    color: rgb(127,127,127)!important;
+}
+.content-login a {
+    color: #707070!important;
+}
+.content-login a:hover{
+    color: #8C4C27!important;
+}
+
+/* -----Register-------- */
+.img-register{
+    width: 50%;
+    margin-left: -15px;
+    background-image: url('../images/maja-petric-register.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -95,6 +113,15 @@ a:hover{
     align-items: center;
     flex-direction: column;
 }
+.explication  p {
+    font-family: 'Playfair Display', serif!important;
+    letter-spacing: .1rem;
+}
+.explication hr {
+    width: 10vw;
+    font-size: 3px;
+    background-color: #707070;
+}
 .txt-exp{
     font-family: 'Cantata One', serif;
     font-size: 2rem;
@@ -104,6 +131,17 @@ a:hover{
     font-family: 'Cantata One', serif;
     text-align: center;
 }
+.step p {
+    font-family: 'Playfair Display', serif!important;
+    letter-spacing: .1rem;
+}
+.step a {
+    color: #707070;
+}
+.step a:hover{
+    color: #8C4C27;
+}
+
 .step img {
     width: 200px;
     margin: 0 auto;
