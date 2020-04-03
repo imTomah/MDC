@@ -3,8 +3,7 @@
 {% block title %}Annonce index{% endblock %}
 
 {% block body %}
-<div class="header-annonce">
-</div>
+<div class="header-annonce"></div>
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item ariane"><a href="{{ path('accueil') }}">Accueil</a></li>
@@ -13,7 +12,8 @@
     </nav>
 
     <div class="btn btn-brown ml-5 my-3">
-        <a href="{{ path('annonce_new') }}" style="color:white;">Publier une annonce</a></div>
+        <a href="{{ path('annonce_new') }}" style="color:white;">Publier une annonce</a>
+    </div>
     
     <div class="row">
         <button type="button" data-toggle="collapse" data-target="#filters" class="d-block d-md-none btn btn-primary btn-block mb-3">Filters &dtrif;</button>

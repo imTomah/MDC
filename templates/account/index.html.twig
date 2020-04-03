@@ -3,18 +3,30 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block body %}
-
-
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecter en tant que : {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ce déconnecter</a>
+    <h1>Mon Profil</h1>
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item ariane"><a href="{{ path('accueil') }}">Accueil</a></li>
+        <li class="breadcrumb-item ariane"><a href="{{ path('annonce_index') }}">Mon Profil</a></li>
+    </ol>
+    </nav>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container my-3 d-flex">
+            <h3>Accéder à la page d'administration du blog : </h3>
+            <a class="btn btn-outline-info ml-5" href="{{ path('admin_blog')}}" role="button">Accéder</a>
         </div>
     {% endif %}
-<div class="container my-5">
-    <h1>Mon Profil</h1>
-    <div class="container row">
+
+    
+<div class="row my-5 mx-5">
+    <div class="container col-md-4 order-md-first shadow-sm mt-5">
         <div class="container my-3">
-            <h3>Mes informations : </h3>
+            <h3>Mes informations </h3>
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous êtes connecter en tant que : {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ce déconnecter</a>
+                </div>
+            {% endif %}
             <div class="card" style="width: 18rem;">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Nom d'utilisateur : {{ app.user.username }}</li>
@@ -24,18 +36,12 @@
                 </ul>
             </div>
         </div>
+    </div>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="container my-3">
-            <h3>Accéder à la page d'administration du blog : </h3>
-            <a class="btn btn-info" href="{{ path('admin_blog')}}" role="button">Accéder</a>
-        </div>
-        {% endif %}
-        
-        <div class="container">
-            <h3>Mes Annonces : </h3>
-            <div class="row">
-             {% for annonce in annonces %}
+    <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch p-4">
+        <h3>Mes Annonces </h3>
+        <div class="row">
+            {% for annonce in annonces %}
                 {% if annonce.author.id == app.user.id %}
                 <div class="col-md-4 d-flex align-items-stretch my-3">
                     <div class="card card-annonce" style="width: 18rem;">
@@ -61,12 +67,14 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
                 {% endif %}
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucune annonce trouvé. <br> <a href="{{ path('annonce_new') }}">Publier votre premiere annonce</a></td>
+                </tr>
             {% endfor %} 
-            </div>
         </div>
-
     </div>
 </div>
 {% endblock %}
