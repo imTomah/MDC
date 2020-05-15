@@ -9,6 +9,10 @@ a {
 a:hover{
     color: #8C4C27;
 }
+.badge-brown{
+    background-color:#D68E5B!important ;
+    color: white!important;
+}
 
 
 /* NavBar */

@@ -50,7 +50,7 @@
 
             <!--Search results-->
         <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch p-4">
-            <div class="row d-flex align-items-stretch">
+            <div class="row">
              {% for annonce in annonces %}
                 {% block card_annonce %}
                         {% include "component/card_annonce.html.twig" %}
@@ -63,19 +63,8 @@
             </div>
         </div>
     </div>
-
-    <nav aria-label="Page navigation" style="margin-top:30px;">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédent</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Suivant</a>
-            </li>
-        </ul>
-    </nav>
-    <a href="{{ path('annonce_new') }}">Create new</a>
+    <div class="paginator d-flex justify-content-center my-5">
+        {{ knp_pagination_render(annonces) }}
+    </div>
+        
 {% endblock %}

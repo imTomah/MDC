@@ -16,7 +16,35 @@
         {% block menu %}
             {% include "component/navbar.html.twig" %}
         {% endblock %}
-            
+        
+
+          {# ------- MESSAGE FLASH ------ #}
+
+        {% for message in app.flashes('success') %}
+            <div class="container">
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('edit') %}
+            <div class="container">
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('delete') %}
+            <div class="container">
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    
+
         {% block body %}{% endblock %}
 
         {% block footer %}

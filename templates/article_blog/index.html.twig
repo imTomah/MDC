@@ -12,8 +12,9 @@
     </div>
     <div class="section-blog">  
         <h2>Bienvenue sur le blog</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, .
-</p>
+        <p class="text-center">Si vous n'arrivez pas à échanger votre surplus sur notre plateforme, pas d'inquiétude, le Blog du marché des ceuilleurs est fait pour vous. <br>
+            Vous trouverai ici pleins d'astuce pour lutter contre le gaspillage alimentaire. 
+        </p>
     </div>
     <div class="row row-cols-5 justify-content-center">
     {% for article_blog in article_blogs %}
@@ -37,10 +38,10 @@
     </div>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun article trouvé</td>
             </tr>
         {% endfor %}
-</div>
-<div class="footer"></div>
     {# <a href="{{ path('article_blog_new') }}">Create new</a> #}
+</div>
+
 {% endblock %}

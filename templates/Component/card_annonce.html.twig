@@ -2,7 +2,7 @@
             <div class="card card-annonce" style="width: 18rem;">
                  {% if annonce.filename %}
                     <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
-                        <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width:100%; height:auto;">
+                        <img src="{{ vich_uploader_asset(annonce, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="max-width:100%; height:auto;">
                     </a>
                     {% else %} 
                     <a href="{{ path('annonce_show', {'id': annonce.id}) }}">
@@ -11,12 +11,16 @@
                 {% endif %} 
                 <div class="card-body">
                     <h5 class="card-title">{{ annonce.Title }}</h5>
-                    <p class="card-text"><small class="text-muted"><i class="fa fa-balance-scale"></i>Quantité : {{ annonce.Quantity }}Kg</small></p>
+                    <p class="card-text"><small class="text-muted"><i class="fa fa-map-marker"></i>{{ annonce.location.name }}</small></p>
                     <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>{{ annonce.author.username }}</small></p>
-                    <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>23 Mars 2020</small></p>
+                    <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>{{ annonce.UpdatedAt ? annonce.UpdatedAt|date('d/m/Y') : '' }}</small></p>
                     {# <p class="card-text">{{ annonce.content|raw }}</p> #}
                     <div class="d-flex align-items-end">
                     <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-brown">Voir plus</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="btn btn-success btn-sm" style="color:white;">Modifier</a>
+                        <a href="{{ path('annonce_delete', {'id': annonce.id}) }}" class="btn btn-danger btn-sm" style="color:white;">Supprimer</a>                        
+                    {% endif %}
                     </div>
                 </div>
             </div>

@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Annonce{% endblock %}
+{% block title %}Modifier l'annonce | Le marché des cueilleurs{% endblock %}
 
 {% block body %}
-    <h1>Edit Annonce</h1>
+    {% if annonce.author.id == app.user.id %}
+    <h1>Modification de l'annonce</h1>
 
-    {{ include('annonce/_form.html.twig', {'button_label': 'Update'}) }}
+    <a href="{{ path('annonce_index') }}">Retour à la liste</a>
+    
+        {{ include('annonce/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('annonce/_delete_form.html.twig') }}
 
-    <a href="{{ path('annonce_index') }}">back to list</a>
+    {% else %}
+        <h1>Vous n'avez pas les droits pour modifié cette annonce</h1>
+    {% endif %}
 
-    {{ include('annonce/_delete_form.html.twig') }}
 {% endblock %}

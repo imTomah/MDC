@@ -23,6 +23,12 @@
     <hr>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container d-flex">
+            <a class="btn btn-outline-info" href="{{ path('article_blog_edit', {'id': article_blog.id}) }}">edit</a>
+            {{ include('article_blog/_delete_form.html.twig') }}
+        </div>
+    {% endif %}
 
     {# Ajout des dernier articles  #}
     <div class="container my-4">
@@ -55,10 +61,4 @@
             </tr>
         {% endfor %}
 </div>
-{% if is_granted('ROLE_ADMIN') %}
-    <div class="container ">
-        <a href="{{ path('article_blog_edit', {'id': article_blog.id}) }}">edit</a>
-        {{ include('article_blog/_delete_form.html.twig') }}
-    </div>
-                {% endif %}
 {% endblock %}

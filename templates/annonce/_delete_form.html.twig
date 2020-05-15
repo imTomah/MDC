@@ -1,5 +1,8 @@
 <form method="post" action="{{ path('annonce_delete', {'id': annonce.id}) }}" onsubmit="return confirm('Êtes vous sur de vouloir supprimmer cette annonce?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
-    <button class="badge badge-danger">Supprimer</button>
+    <button class="badge badge-danger p-1">Supprimer</button>
 </form>
+
+
+

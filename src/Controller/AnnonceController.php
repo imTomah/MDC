@@ -11,6 +11,8 @@ use App\Repository\UserRepository;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\DepartementRepository;
+use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,10 +40,18 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/", name="annonce_index", methods={"GET"})
      */
-    public function index(AnnonceRepository $annonceRepository): Response
+    public function index(AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $donnees = $annonceRepository->findAll();
+
+        $annonce = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            9
+        );
+        
         return $this->render('annonce/index.html.twig', [
-            'annonces'      => $annonceRepository->findAll(),
+            'annonces'      => $annonce,
             'category'      => $this->menu_categories,
             "departement"   => $this->menu_departement,
 
@@ -70,6 +80,8 @@ class AnnonceController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Votre annonce a bien été publié');
 
             return $this->redirectToRoute('annonce_index');
         }
@@ -123,6 +135,9 @@ class AnnonceController extends AbstractController
             
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('edit', 'Votre annonce a bien été modifié');
+
+
             return $this->redirectToRoute('app_account');
         }
 
@@ -143,6 +158,9 @@ class AnnonceController extends AbstractController
             $entityManager->remove($annonce);
             $entityManager->flush();
         }
+
+        $this->addFlash('delete', 'Votre annonce a bien été supprimer');
+
 
         return $this->redirectToRoute('app_account');
     }

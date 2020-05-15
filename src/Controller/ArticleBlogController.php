@@ -6,6 +6,7 @@ use DateTimeZone;
 use App\Entity\ArticleBlog;
 use App\Form\ArticleBlogType;
 use App\Repository\ArticleBlogRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,10 +34,17 @@ class ArticleBlogController extends AbstractController
     /**
      * @Route("/", name="article_blog_index", methods={"GET"})
      */
-    public function index(ArticleBlogRepository $articleBlogRepository): Response
+    public function index(ArticleBlogRepository $articleBlogRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $donnees = $articleBlogRepository->findAll();
+        $article = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            9
+        );
+
         return $this->render('article_blog/index.html.twig', [
-            'article_blogs' => $articleBlogRepository->findAll(),
+            'article_blogs' => $article,
         ]);
     }
 

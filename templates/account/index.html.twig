@@ -18,8 +18,8 @@
     {% endif %}
 
     
-<div class="row my-5 mx-5">
-    <div class="container col-md-4 order-md-first shadow-sm mt-5">
+<div class="row">
+    <div class="container col-md-3 order-md-first shadow-sm mt-5">
         <div class="container my-3">
             <h3>Mes informations </h3>
             {% if app.user %}
@@ -31,14 +31,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Nom d'utilisateur : {{ app.user.username }}</li>
                     <li class="list-group-item">Email : {{ app.user.email }}</li>
-                    <li class="list-group-item">id : {{ app.user.id }}</li>
-                    <li class="list-group-item">Mes annonces : <a href="">3</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch p-4">
+    <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex flex-column align-items-stretch p-4">
         <h3>Mes Annonces </h3>
         <div class="row">
             {% for annonce in annonces %}
@@ -56,13 +54,13 @@
                             {% endif %} 
                         <div class="card-body">
                             <h5 class="card-title">{{ annonce.Title }}</h5>
-                            <p class="card-text"><small class="text-muted"><i class="fa fa-balance-scale"></i>Quantité : {{ annonce.Quantity }}Kg</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-map-marker"></i>{{ annonce.location.name }}</small></p>
                             <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>{{ annonce.author.username }}</small></p>
-                            <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>23 Mars 2020</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>{{ annonce.UpdatedAt ? annonce.UpdatedAt|date('d/m/Y') : '' }}</small></p>
                             {# <p class="card-text">{{ annonce.content|raw }}</p> #}
                             <div class="d-flex align-items-end">
-                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-brown">Voir plus</a>
-                            <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="badge badge-info mx-2" style="color:white;">Modifier</a>
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="badge badge-brown p-1">Voir plus</a>
+                            <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="badge badge-info mx-2 p-1" style="color:white;">Modifier</a>
                                 {{ include('annonce/_delete_form.html.twig') }}
                             </div>
                         </div>
@@ -70,9 +68,7 @@
                 </div>
                 {% endif %}
                 {% else %}
-                <tr>
-                    <td colspan="5">Aucune annonce trouvé. <br> <a href="{{ path('annonce_new') }}">Publier votre premiere annonce</a></td>
-                </tr>
+                    <p>Aucune annonce trouvé. <br> <a href="{{ path('annonce_new') }}">Publier votre première annonce</a></p>
             {% endfor %} 
         </div>
     </div>
