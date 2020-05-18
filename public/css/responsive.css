@@ -1,0 +1,113 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+    
+    
+  }
+  
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+  
+  @media (min-width: 1041px) and (max-width: 1280px) {
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1040px) {
+    
+     /* NavBar */
+     .logo{
+      width: 270px;
+    }
+    .menu-burger{
+      font-size: 3rem!important;
+    }
+    .menu-burger-item{
+      font-size: 2rem!important;
+    }
+    /* Page d'accueil */
+    .concept-content h2{
+      font-size: 5rem;
+    }
+    .concept-content p{
+      font-size: 2rem;
+    }
+
+    .txt-exp{
+      font-size: 3.5rem;;
+    }
+    .explication p {
+      font-size: 1.3rem;
+    }
+    .step{
+      flex-direction: column;
+      align-items: center;
+    }
+    .step h4{
+      font-size: 2rem;
+    }
+    .step img{
+      width: 350px;
+      margin: 0 auto 0 auto!important;
+    }
+
+    .annonce{
+      height: 120vh;
+    }
+    
+    /* BLOG */
+    #header-blog{
+      height: 45vh;
+    }
+    .section-blog h2 {
+      font-size: 3.5rem;
+    }
+    .section-blog p {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    
+     /* Page d'accueil */
+     .annonce{
+      height: 90vh!important;
+    
+    }
+    
+  }
+  
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    /* NavBar */
+    .logo{
+      width: 270px;
+    }
+    /* Page d'accueil */
+    .content-header {
+      margin-top: 500px;
+      font-size: 5rem;
+    }
+    .annonce{
+      height: 90vh;
+    }
+    
+  }

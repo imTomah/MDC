@@ -104,6 +104,7 @@ a:hover{
     margin-top: 50px;
     font-family: 'Playfair Display', serif!important;
     letter-spacing: .1rem;
+    width: 70vw;
 }
 .concept-content p span{
     font-size: 2rem;
@@ -156,6 +157,7 @@ a:hover{
 /* ANNONCE */
 
 .annonce{
+    height:200vh;
     background-image: url('../images/Fond-annonce.png');
     background-size: cover ;
     background-position:center;
@@ -192,19 +194,6 @@ a:hover{
     font-size: 2rem;
 }
 .header-card-blog{
-    color: white;
-    font-family: 'Cantata One', serif;
-    font-size: 2rem;
-}
-/* Légumes */
-.header-legumes{
-    color: white;
-    font-family: 'Cantata One', serif;
-    font-size: 2rem;
-    width: 100vw;
-}
-/* Outils */
-.header-outils{
     color: white;
     font-family: 'Cantata One', serif;
     font-size: 2rem;
@@ -274,7 +263,12 @@ a:hover{
 .page-item a:hover {
     background-color: #8C4C27;
 }
-
+li.page-item.active span{
+    background-color: #8C4C27!important;    
+}
+li.page-item.disabled span{
+    background-color:  #2C3E50!important;
+}
  
 
 
@@ -383,9 +377,15 @@ a:hover{
 
 /* FOOTER */
 
+.footer{
+    height: auto!important;
+}
 .footer a {
     color: #707070;
 }
 .footer a:hover{
     color: #8C4C27;
+}
+.footer-content{
+    background-color: #ECF0F1;
 }

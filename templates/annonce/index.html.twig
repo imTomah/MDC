@@ -16,16 +16,18 @@
     </div>
     
     <div class="row">
-        <button type="button" data-toggle="collapse" data-target="#filters" class="d-block d-md-none btn btn-primary btn-block mb-3">Filters &dtrif;</button>
-        <div class="col-md-3 order-md-first shadow-sm mt-5" style="max-height:400px;">
-            <div id="filters" class="collapse d-block">
+        <button type="button" data-toggle="collapse" data-target="#filters" 
+            class="d-lg-none btn btn-primary btn-block mb-3">Filtre de recherche &dtrif;
+        </button>
+        <div id="filters" class="col-md-3 order-md-first shadow-sm mt-5" style="max-height:400px;">
+            <div class="collapse d-block">
                 <!------------Search filters------------->
                 <!--Category-->
                 <h2 class="ml-3">Filtre</h2>
                 <hr>
                 <div class="filter-nav my-3 ml-2">
                     <p>Par type de produits :</p>
-                        <a class="btn btn-brown m-1" data-filter="" href="{{ path('annonce_index') }}">Toute les annonces</a>
+                        <a class="btn btn-brown m-1" data-filter="" href="{{ path('annonce_index') }}">Toutes les annonces</a>
                         <br>
                     {% for t in category %}
                         <a class="btn btn-primary m-1" href="{{ path('annonce_type', {'id': t.id})}}">{{ t.type }}</a>
@@ -49,7 +51,7 @@
 
 
             <!--Search results-->
-        <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch p-4">
+        <div class="col-sm-12 col-md-9 order-md-last mt-5 shadow-sm d-flex align-items-stretch mx-auto p-4">
             <div class="row">
              {% for annonce in annonces %}
                 {% block card_annonce %}

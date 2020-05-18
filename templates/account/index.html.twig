@@ -19,7 +19,7 @@
 
     
 <div class="row">
-    <div class="container col-md-3 order-md-first shadow-sm mt-5">
+    <div class="container flex-sm-column col-md-9 order-md-first shadow-sm mt-5">
         <div class="container my-3">
             <h3>Mes informations </h3>
             {% if app.user %}
@@ -36,9 +36,9 @@
         </div>
     </div>
 
-    <div class="col-md-9 order-md-last mt-5 shadow-sm d-flex flex-column align-items-stretch p-4">
+    <div class="col-md-9 order-md-last mt-5  mx-auto shadow-sm d-flex flex-column align-items-stretch p-4">
         <h3>Mes Annonces </h3>
-        <div class="row">
+        <div class="row mx-auto">
             {% for annonce in annonces %}
                 {% if annonce.author.id == app.user.id %}
                 <div class="col-md-4 d-flex align-items-stretch my-3">
@@ -58,9 +58,9 @@
                             <p class="card-text"><small class="text-muted"><i class="fa fa-user"></i>{{ annonce.author.username }}</small></p>
                             <p class="card-text"><small class="text-muted"><i class="fa fa-calendar"></i>{{ annonce.UpdatedAt ? annonce.UpdatedAt|date('d/m/Y') : '' }}</small></p>
                             {# <p class="card-text">{{ annonce.content|raw }}</p> #}
-                            <div class="d-flex align-items-end">
+                            <div class="d-flex align-items-center flex-column">
                             <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="badge badge-brown p-1">Voir plus</a>
-                            <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="badge badge-info mx-2 p-1" style="color:white;">Modifier</a>
+                            <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="badge badge-info mt-2 mb-2 p-1" style="color:white;">Modifier</a>
                                 {{ include('annonce/_delete_form.html.twig') }}
                             </div>
                         </div>

@@ -13,16 +13,16 @@
     </nav>
     
     <div class="row col-12">
-        <div class="col-md-3 order-md-first shadow-sm mt-5" style="max-height:400px;">
-            <button type="button" data-toggle="collapse" data-target="#filters" class="d-block d-md-none btn btn-primary btn-block mb-3">Filters &dtrif;</button>
+            <button type="button" data-toggle="collapse" data-target="#filters" class="d-lg-none btn btn-primary btn-block mb-3">Filtre de recherche&dtrif;</button>
+        <div id="filters" class="col-md-3 order-md-first shadow-sm mt-5" style="max-height:400px;">
             <!------------Search filters------------->
             <!--Category-->
-            <div id="filters" class="collapse d-md-block">
+            <div class="collapse d-md-block">
                 <h3 class="ml-3">Filtre</h3>
                 <hr>
                 <div class="filter-nav my-3 ml-2">
                     <p>Par type de produits :</p>
-                        <a class="btn btn-primary m-1" data-filter="" href="{{ path('annonce_index') }}">Toute les annonces</a>
+                        <a class="btn btn-primary m-1" data-filter="" href="{{ path('annonce_index') }}">Toutes les annonces</a>
                         <br>
                     {% for t in category %}
                         {% if t.id == filtre %}
@@ -36,12 +36,12 @@
                 <p class="mt-4 ml-2">Par departement :</p>
                     <a class="btn btn-primary m-2" data-filter="" href="{{ path('annonce_index') }}">Toute la France</a>
                 <div class="btn-group ml-2">
-                    <button type="button" class="btn btn-primary dropdown-toggle shadow" data-toggle="dropdown">Choisir un departement <span class="caret"></span></button>
+                    <button type="button" class="btn btn-brown dropdown-toggle shadow" data-toggle="dropdown">Choisir un departement <span class="caret"></span></button>
                     <ul class="dropdown-menu scrollable-menu" role="menu">
                         {% for d in departement %}
                         {% if d.id == filtre %}
                         <div class="container">
-                            <p> Voici toute les annonces du departement {{ d.name }}</p>
+                            <p> Voici toutes les annonces du departement {{ d.name }}</p>
                         </div>
                         {% else %}
                             <li>
@@ -56,7 +56,7 @@
 
 
             <!--Search results-->
-        <div class="col-md-9 order-md-last my-5 shadow-sm d-flex align-items-stretch p-4">
+        <div class="col-sm-12 col-md-9 order-md-last mx-auto my-5 shadow-sm d-flex align-items-stretch p-4">
             <div class="row d-flex align-items-stretch">
              {% for annonce in annonces %}
                 {% block card_annonce %}
